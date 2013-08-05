@@ -5,6 +5,7 @@ import (
   "log"
   "github.com/gorilla/mux"
   "encoding/json"
+  "io/ioutil"
 )
 
 type AuthJSON struct {
@@ -132,18 +133,18 @@ func AuthenticationHandler(w http.ResponseWriter, req *http.Request) {
 
 func ValidTokenProvided(w http.ResponseWriter, req *http.Request) bool {
 	
-	/*b, _ := ioutil.ReadAll(req.Body);
+	b, _ := ioutil.ReadAll(req.Body)
 	log.Println(b)
-	log.Println(req.Body)
-	log.Println(req)
 	
-	var body Response
+	/*var body Response
 	err := json.NewDecoder(req.Body).Decode(&body)
     if err != nil {
         panic(err)
     }
 	
+	
 	userToken := body.Token */
+	
 	if( currentToken == "" /*|| userToken != currentToken*/ ) {
 		// log.Println(errors.New("math: square root of negative number"))
 	  	w.WriteHeader(401)
