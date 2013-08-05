@@ -5,7 +5,6 @@ import (
   "log"
   "github.com/gorilla/mux"
   "encoding/json"
-  "io/ioutil"
 )
 
 type AuthJSON struct {
@@ -29,14 +28,6 @@ type Article struct {
 type Photo struct {
 	Id		int 	`json:"id"`
 	Src		string 	`json:"src"`
-}
-
-type PhotosJSON struct {
-	Photos []Photo `json:"photos"`
-}
-
-type ArticlesJSON struct {
-    Articles []Article `json:"articles"`
 }
 
 var articles []Article
@@ -133,20 +124,9 @@ func AuthenticationHandler(w http.ResponseWriter, req *http.Request) {
 
 func ValidTokenProvided(w http.ResponseWriter, req *http.Request) bool {
 	
-	b, _ := ioutil.ReadAll(req.Body)
-	log.Println(b)
+	userToken := req.FormValue("token")
 	
-	/*var body Response
-	err := json.NewDecoder(req.Body).Decode(&body)
-    if err != nil {
-        panic(err)
-    }
-	
-	
-	userToken := body.Token */
-	
-	if( currentToken == "" /*|| userToken != currentToken*/ ) {
-		// log.Println(errors.New("math: square root of negative number"))
+	if( currentToken == "" || userToken != currentToken ) {
 	  	w.WriteHeader(401)
 		w.Write([]byte(`{ "error": "Invalid token. You provided: " + userToken }`))
 		return false
