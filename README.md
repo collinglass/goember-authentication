@@ -189,7 +189,7 @@ func ValidTokenProvided(w http.ResponseWriter, req *http.Request) bool {
 	userToken := req.FormValue("token")
 	
 	if( currentToken == "" || userToken != currentToken ) {
-	  	w.WriteHeader(401)
+	  	w.WriteHeader(http.StatusUnauthorized)
 		w.Write([]byte(`{ "error": "Invalid token. You provided: " + userToken }`))
 		return false
 	}
@@ -242,43 +242,42 @@ var photos []Photo
 
 func initrecords() {
 
-var article1 Article
-article1.Id = 1
-article1.Title = "How to Write a Javascript Framework"
-article1.Author = "Tomhuda Katzdale"
-article1.Body = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	article1 := Article {
+		Id: 1,
+		Title: "How to Write a Javascript Framework",
+		Author: "Tomhuda Katzdale",
+		Body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+	}
+	article2 := Article {
+		Id: 2,
+		Title: "Chronicles of an Embereño",
+		Author: "Alerik Bryneer",
+		Body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+	}
+	article3 := Article {
+		Id: 3,
+		Title: "The Eyes of Thomas",
+		Author: "Yahuda Katz",
+		Body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+	}
+	
+	articles = append(articles, article1, article2, article3)
+	
+	photo1 := Photo {
+		Id: 1,
+		Src: "images/potd.png",
+	}
+	photo2 := Photo {
+		Id: 2,
+		Src: "images/yohuda.jpg",
+	}
+	photo3 := Photo {
+		Id: 3,
+		Src: "images/easter.jpg",
+	}
 
-var article2 Article
-article2.Id = 2
-article2.Title = "Chronicles of an Embereño"
-article2.Author = "Alerik Bryneer"
-article2.Body = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	photos = append(photos, photo1, photo2, photo3)
 
-var article3 Article
-article3.Id = 3
-article3.Title = "The Eyes of Thomas"
-article3.Author = "Yahuda Katz"
-article3.Body = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-articles = append(articles, article1)
-articles = append(articles, article2)
-articles = append(articles, article3)
-
-var photo1 Photo
-photo1.Id = 1
-photo1.Src = "images/potd.png"
-
-var photo2 Photo
-photo2.Id = 2
-photo2.Src = "images/yohuda.jpg"
-
-var photo3 Photo
-photo3.Id = 3
-photo3.Src = "images/easter.jpg"
-
-photos = append(photos, photo1)
-photos = append(photos, photo2)
-photos = append(photos, photo3)
 
 }
 
@@ -333,7 +332,7 @@ func ValidTokenProvided(w http.ResponseWriter, req *http.Request) bool {
 	userToken := req.FormValue("token")
 	
 	if( currentToken == "" || userToken != currentToken ) {
-	  	w.WriteHeader(401)
+	  	w.WriteHeader(http.StatusUnauthorized)
 		w.Write([]byte(`{ "error": "Invalid token. You provided: " + userToken }`))
 		return false
 	}
