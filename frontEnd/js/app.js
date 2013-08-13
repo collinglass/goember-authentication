@@ -74,7 +74,14 @@
 	  
 	  login: function() {
 		  
-		  var self = this, data = this.getProperties('username', 'password');
+		  var self = this;
+		  var userAuth = CryptoJS.SHA256(this.get('username'));
+		  var passAuth = CryptoJS.SHA256(this.get('password'));
+		  
+		  var data = {
+			  username: userAuth.toString(CryptoJS.enc.Hex),
+			  password: passAuth.toString(CryptoJS.enc.Hex)
+		  };
 		  
 	      // Clear out any error messages.
 	      this.set('errorMessage', null);

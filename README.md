@@ -1,5 +1,9 @@
 # Go Ember Token-based Authentication
 
+### Note: ###
+
+Small addition to Embercasts tutorial, I used crypto.js and added a basic SHA256 encryption hash to the user/pass before sending it to server. [See here](http://code.google.com/p/crypto-js/#SHA-2) and [here](http://code.google.com/p/crypto-js/#The_Hasher_Output) for algorithm used, (changed to hex string). And [here](http://www.movable-type.co.uk/scripts/sha256.html) is a simple resource to generate any hash string if you want to change the authentication user/pass.
+
 ## Documentation ##
 
 Simple Go authentication server to use with [embercasts authentication screencasts](http://www.embercasts.com/).
