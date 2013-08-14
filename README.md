@@ -11,8 +11,10 @@ Simple Go authentication server to use with [embercasts authentication screencas
 
 ### Import ###
 
-```import (
-	"net/http"```
+```
+import (
+	"net/http"
+```
 The library for web apps/protocols.
 ```"log"```
 The library to log to the console
