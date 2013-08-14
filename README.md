@@ -16,12 +16,18 @@ import (
 	"net/http"
 ```
 The library for web apps/protocols.
-```"log"```
+```
+"log"
+```
 The library to log to the console
-```"github.com/gorilla/mux"```
+```
+"github.com/gorilla/mux"
+```
 We need this for routing.
-```	"encoding/json"
-)```
+```
+    "encoding/json"
+)
+```
 We need this for handling JSON (encoding/decoding).
 
 ### Articles ###
