@@ -300,7 +300,7 @@ func AuthenticationHandler(w http.ResponseWriter, req *http.Request) {
 	password := authJSON.Password
 	
 	// If username and password are correct	
-	if username == "ember" && password == "casts" {
+	if username == "7cadc15d609c4ae9b4be6265b8e1cace16e6fa78a81ab0c7db82e687a7c867a5" && password == "0653216d8920713c0db2c2571a0d6ed0c2b6b94194f37e53a7bb025391dfc8b0" {
 		currentToken = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		
 		var res Response
