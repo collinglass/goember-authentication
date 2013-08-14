@@ -32,7 +32,7 @@ We need this for handling JSON (encoding/decoding).
 
 ### Articles ###
 
-{% codeblock %}
+```
 type Article struct {
 	Id		int 	`json:"id"`
 	Title	string 	`json:"title"`
@@ -77,11 +77,12 @@ func main(){
 	initrecords()
 	...
 }
-{% endcodeblock %}
+```
+
 
 Create a go struct for the article object. On initialization: Instantiate an array of Article objects. Then individually instantiate the 3 article objects and append them to articles array. This gives us a clean structure to handle articles.
 
-{% codeblock %}
+```
 func ArticlesHandler(w http.ResponseWriter, r *http.Request) {
   	if(ValidTokenProvided(w,r)) {
       w.Header().Set("Content-Type", "application/json")
@@ -101,7 +102,7 @@ func main(){
     http.Handle("/api/", r)
 	...
 }
-{% endcodeblock %}
+```
 
 Handle the GET request for displaying the Articles with JSON. If valid token is provided, encode articles array to JSON and send to client.
 
@@ -111,7 +112,7 @@ Same as Articles.
 
 ### Authentication ###
 
-{% codeblock %}
+```
 type AuthJSON struct {
     Username    string `json:"username"`
     Password 	string `json:"password"`
@@ -126,17 +127,17 @@ type Response struct {
     Token 		string `json:"token"`
 	Message 	string `json:"message"`
 }
-{% endcodeblock %}
+```
 
 Response struct creates go object for outgoing response. If valid username/password combination is submitted token/success response is sent; if invalid username/password combination is submitted, message/success response is sent.
 
-{% codeblock %}
+```
 var currentToken string
-{% endcodeblock %}
+```
 
 currentToken holds authentication token and persists for login session. 
 
-{% codeblock %}
+```
 func AuthenticationHandler(w http.ResponseWriter, req *http.Request) {
 	
 	// Parse the incoming user/pass from the request body
@@ -181,14 +182,14 @@ func AuthenticationHandler(w http.ResponseWriter, req *http.Request) {
 	}
 	
 }
-{% endcodeblock %}
+```
 
 Decodes incoming username/password JSON, puts it in AuthJSON object.
 
 If username/password combination is valid, set currentToken and success:true serialize it to JSON and pass back to client.
 If username/password combination is invalid, set error message and success:false serialize it to JSON and pass back to client.
 
-{% codeblock %}
+```
 func ValidTokenProvided(w http.ResponseWriter, req *http.Request) bool {
 	userToken := req.FormValue("token")
 	
@@ -199,14 +200,14 @@ func ValidTokenProvided(w http.ResponseWriter, req *http.Request) bool {
 	}
 	return true
 }
-{% endcodeblock %}
+```
 
 If currentToken is empty or userToken does not match currentToken then raise 401 error and return false, else return true.
 
 ### Full server.go Code ###
 <a id="fullcode"></a> 
 
-{% codeblock server.go %}
+``` server.go
 
 package main
 
@@ -383,6 +384,6 @@ func main() {
   http.ListenAndServe(":8080", nil)
 }
 
-{% endcodeblock %}
+```
 
 Now follow the [embercasts](http://www.embercasts.com/) to understand how the client interacts with this code.
