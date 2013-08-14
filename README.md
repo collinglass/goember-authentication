@@ -117,11 +117,11 @@ type AuthJSON struct {
     Username    string `json:"username"`
     Password 	string `json:"password"`
 }
-{% endcodeblock %}
+```
 
 AuthJSON struct creates go object for incoming username and password.
 
-{% codeblock %}
+```
 type Response struct {
     Success		bool `json:"success"`
     Token 		string `json:"token"`
