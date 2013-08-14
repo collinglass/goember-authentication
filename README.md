@@ -11,23 +11,15 @@ Simple Go authentication server to use with [embercasts authentication screencas
 
 ### Import ###
 
-{% codeblock %}
-import (
-	"net/http"
-{% endcodeblock %}
+```import (
+	"net/http"```
 The library for web apps/protocols.
-{% codeblock %}
-"log"
-{% endcodeblock %}
+```"log"```
 The library to log to the console
-{% codeblock %}
-"github.com/gorilla/mux"
-{% endcodeblock %}
+```"github.com/gorilla/mux"```
 We need this for routing.
-{% codeblock %}
-	"encoding/json"
-)
-{% endcodeblock %}
+```	"encoding/json"
+)```
 We need this for handling JSON (encoding/decoding).
 
 ### Articles ###
